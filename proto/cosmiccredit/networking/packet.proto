@@ -1,0 +1,13 @@
+syntax = "proto3";
+package cosmiccredit.networking;
+
+option go_package = "cosmic-credit/x/networking/types";
+
+message NetworkingPacketData {
+    oneof packet {
+        NoData noData = 1;
+    }
+}
+
+message NoData {
+}

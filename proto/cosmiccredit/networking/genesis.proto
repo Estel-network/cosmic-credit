@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package cosmiccredit.networking;
+
+import "gogoproto/gogo.proto";
+import "cosmiccredit/networking/params.proto";
+
+option go_package = "cosmic-credit/x/networking/types";
+
+// GenesisState defines the networking module's genesis state.
+message GenesisState {
+  Params params  = 1 [(gogoproto.nullable) = false];
+  string port_id = 2;
+}
+

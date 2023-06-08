@@ -1,0 +1,7 @@
+syntax = "proto3";
+package cosmiccredit.networking;
+
+option go_package = "cosmic-credit/x/networking/types";
+
+// Msg defines the Msg service.
+service Msg {}
