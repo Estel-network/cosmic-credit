@@ -24,6 +24,22 @@ func TestGenesis(t *testing.T) {
 			RewardTime:           "85",
 			LiquidationThreshold: 65,
 		},
+		CreditList: []types.Credit{
+			{
+				Owner: "0",
+			},
+			{
+				Owner: "1",
+			},
+		},
+		CollateralList: []types.Collateral{
+			{
+				Index: "0",
+			},
+			{
+				Index: "1",
+			},
+		},
 		// this line is used by starport scaffolding # genesis/test/state
 	}
 
@@ -36,5 +52,7 @@ func TestGenesis(t *testing.T) {
 	nullify.Fill(got)
 
 	require.Equal(t, genesisState.ModuleInfo, got.ModuleInfo)
+	require.ElementsMatch(t, genesisState.CreditList, got.CreditList)
+	require.ElementsMatch(t, genesisState.CollateralList, got.CollateralList)
 	// this line is used by starport scaffolding # genesis/test/assert
 }

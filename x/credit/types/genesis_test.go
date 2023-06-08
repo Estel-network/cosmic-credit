@@ -32,9 +32,53 @@ func TestGenesisState_Validate(t *testing.T) {
 					RewardTime:           "71",
 					LiquidationThreshold: 20,
 				},
+				CreditList: []types.Credit{
+					{
+						Owner: "0",
+					},
+					{
+						Owner: "1",
+					},
+				},
+				CollateralList: []types.Collateral{
+					{
+						Index: "0",
+					},
+					{
+						Index: "1",
+					},
+				},
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,
+		},
+		{
+			desc: "duplicated credit",
+			genState: &types.GenesisState{
+				CreditList: []types.Credit{
+					{
+						Owner: "0",
+					},
+					{
+						Owner: "0",
+					},
+				},
+			},
+			valid: false,
+		},
+		{
+			desc: "duplicated collateral",
+			genState: &types.GenesisState{
+				CollateralList: []types.Collateral{
+					{
+						Index: "0",
+					},
+					{
+						Index: "0",
+					},
+				},
+			},
+			valid: false,
 		},
 		// this line is used by starport scaffolding # types/genesis/testcase
 	} {

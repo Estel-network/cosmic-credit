@@ -1,0 +1,14 @@
+syntax = "proto3";
+package cosmiccredit.credit;
+
+option go_package = "cosmic-credit/x/credit/types";
+
+message Credit {
+  string owner = 1; 
+  uint64 credited = 2; 
+  string rewarding = 3; 
+  string collateral = 4; 
+  uint64 bond = 5; 
+  
+}
+

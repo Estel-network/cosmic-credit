@@ -1,6 +1,8 @@
 package types
 
-// this line is used by starport scaffolding # genesis/types/import
+import (
+	"fmt"
+)
 
 // DefaultIndex is the default global index
 const DefaultIndex uint64 = 1
@@ -17,6 +19,8 @@ func DefaultGenesis() *GenesisState {
 			RewardTime:           "None",
 			LiquidationThreshold: 0,
 		},
+		CreditList:     []Credit{},
+		CollateralList: []Collateral{},
 		// this line is used by starport scaffolding # genesis/types/default
 		Params: DefaultParams(),
 	}
@@ -25,6 +29,26 @@ func DefaultGenesis() *GenesisState {
 // Validate performs basic genesis state validation returning an error upon any
 // failure.
 func (gs GenesisState) Validate() error {
+	// Check for duplicated index in credit
+	creditIndexMap := make(map[string]struct{})
+
+	for _, elem := range gs.CreditList {
+		index := string(CreditKey(elem.Owner))
+		if _, ok := creditIndexMap[index]; ok {
+			return fmt.Errorf("duplicated index for credit")
+		}
+		creditIndexMap[index] = struct{}{}
+	}
+	// Check for duplicated index in collateral
+	collateralIndexMap := make(map[string]struct{})
+
+	for _, elem := range gs.CollateralList {
+		index := string(CollateralKey(elem.Index))
+		if _, ok := collateralIndexMap[index]; ok {
+			return fmt.Errorf("duplicated index for collateral")
+		}
+		collateralIndexMap[index] = struct{}{}
+	}
 	// this line is used by starport scaffolding # genesis/types/validate
 
 	return gs.Params.Validate()
