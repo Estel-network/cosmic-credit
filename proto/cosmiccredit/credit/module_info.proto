@@ -1,0 +1,15 @@
+syntax = "proto3";
+package cosmiccredit.credit;
+
+option go_package = "cosmic-credit/x/credit/types";
+
+message ModuleInfo {
+  bool enabled = 1; 
+  uint64 totalPositions = 2; 
+  uint64 totalCredited = 3; 
+  uint64 creditFee = 4; 
+  uint64 rewardAmount = 5; 
+  string rewardTime = 6; 
+  uint64 liquidationThreshold = 7; 
+  
+}

@@ -1,12 +1,16 @@
 syntax = "proto3";
+
 package cosmiccredit.credit;
 
 import "gogoproto/gogo.proto";
 import "cosmiccredit/credit/params.proto";
+import "cosmiccredit/credit/module_info.proto";
 
 option go_package = "cosmic-credit/x/credit/types";
 
 // GenesisState defines the credit module's genesis state.
 message GenesisState {
-  Params params = 1 [(gogoproto.nullable) = false];
+  Params     params     = 1 [(gogoproto.nullable) = false];
+  ModuleInfo moduleInfo = 2 [(gogoproto.nullable) = false];
 }
+

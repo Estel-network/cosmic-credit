@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"cosmic-credit/x/credit/types"
+
 	"github.com/stretchr/testify/require"
 )
 
@@ -19,9 +20,18 @@ func TestGenesisState_Validate(t *testing.T) {
 			valid:    true,
 		},
 		{
-			desc:     "valid genesis state",
+			desc: "valid genesis state",
 			genState: &types.GenesisState{
 
+				ModuleInfo: types.ModuleInfo{
+					Enabled:              true,
+					TotalPositions:       37,
+					TotalCredited:        94,
+					CreditFee:            45,
+					RewardAmount:         55,
+					RewardTime:           "71",
+					LiquidationThreshold: 20,
+				},
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,
